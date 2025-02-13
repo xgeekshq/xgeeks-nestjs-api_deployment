@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xgeeks-nestjs-api
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xgeeks-nestjs-api
+  template:
+    metadata:
+      labels:
+        app: xgeeks-nestjs-api
+      annotations:
+        backstage.io/kubernetes-id: xgeeks-nestjs-api
+    spec:
+      imagePullSecrets:
+        - name: regcred-ghcr-io-secret
+      containers:
+        - name: xgeeks-nestjs-api
+          image: ghcr.io/xgeekshq/xgeeks-nestjs-api
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 125m
+              memory: 250Mi
+            limits:
+              cpu: 250m
+              memory: 500Mi
+          env:
+            - name: NODE_ENV
+              value: production
