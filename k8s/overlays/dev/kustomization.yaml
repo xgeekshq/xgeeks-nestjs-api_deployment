@@ -9,14 +9,14 @@ namespace: idp-dev
 # namespace: xgeeks-nestjs-api-idp_training-dev
 
 resources:
-  - ../../base
-  - ingress.yaml
+- ../../base
+- ingress.yaml
 
-images:
   # ATENTION name = image.name NOT name = spec.containers[0].name
-  - name: ghcr.io/xgeekshq/xgeeks-nestjs-api
-    newTag: v0.1.0
+images:
+- name: ghcr.io/xgeekshq/xgeeks-nestjs-api
+  newTag: 48518f4
 
 replicas:
-  - name: xgeeks-nestjs-api # the deployment name
-    count: 1
+- count: 1
+  name: xgeeks-nestjs-api
